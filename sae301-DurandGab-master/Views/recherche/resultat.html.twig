@@ -1,0 +1,20 @@
+{% extends "index.html.twig" %}
+
+{% block content %}
+
+    <div  class="row d-flex container-fluid justify-content-around mx-auto" id="crea" >
+        <h2 class="text-center">Resultat de la recherche</h2>
+            {% for jeu in jeux %}
+            <div class="card d-flex justify-content-around my-2 mx-0 col-12 col-sm-6 col-md-6 col-xl-3" style="width: 30rem;">
+            <img src={{"img/" ~ jeu.img_jeu}} class="card-img-top" alt=""/>
+            <div class="card-body">
+            <h5 class="card-title">{{jeu.nom_jeu}}</h5>
+            <p class="card-text">{{jeu.nom_categorie}}</p>
+            <a href="index.php?action=jeu&nom={{jeu.nom_jeu}}" class="btn btn-light">En savoir plus</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+

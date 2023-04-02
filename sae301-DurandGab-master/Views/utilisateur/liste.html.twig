@@ -1,0 +1,20 @@
+{% extends "index.html.twig" %}
+
+{% block content %}
+
+    <div  class="row d-flex container-fluid justify-content-around mx-auto" id="crea" >
+        <h2 class="text-center my-2">Liste des utilisateurs de l'application</h2>
+            {% for utilisateur in utilisateurs %}
+            <div class="card d-flex justify-content-around my-2 bg-light mx-0 col-12 col-sm-6 col-md-6 col-xl-3" style="width: 30rem;">
+            <div class="card-body">
+            <h5 class="card-title">{{utilisateur.pseudo}}</h5>
+            <p class="card-text">{{utilisateur.nom}}</p>
+            <p class="card-text">{{utilisateur.prenom}}</p>
+            <a href="index.php?action=uti&pseudo={{utilisateur.pseudo}}"  class="btn btn-dark">Voir son profil</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}

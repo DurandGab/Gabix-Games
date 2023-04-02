@@ -1,0 +1,18 @@
+{% extends "index.html.twig" %}
+
+{% block content %}
+	<div class="d-flex justify-content-center">
+		<form method="post" action="index.php" class="well w-75 border border-3 border-dark">
+		<fieldset><legend>Choix du jeu à modifier</legend>
+		
+	    <select name="id_jeu" class="form-control form-control-sm">
+		{% for jeu in jeux %}
+		  <option value="{{jeu.id_jeu}}">{{jeu.nom_jeu}}</option>
+		{% endfor %}
+		</select>
+		<div class="my-3 d-flex justify-content-center">
+		<input type="submit" class="btn border border-2 border-danger" name="valider_choix" value="valider" />
+		</div>
+		</fieldset></form>
+	</div>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "index.html.twig" %}
+
+{% block content %}
+
+    <div  class="row d-flex container-fluid justify-content-around mx-auto" id="crea" >
+        <h2 class="text-center my-2">{{jeu.nom_jeu}}</h2>
+            <div class="card d-flex justify-content-around my-3 mx-0 col-12 col-sm-6 bg-light col-md-6 col-xl-3" style="width: 50rem;">
+            <img src={{"img/" ~ jeu.img_jeu}} class="my-2 card-img-top" alt=""/>
+            <div class="card-body">
+            <div class="row d-flex">
+                <p class="card-text col-6 fs-5"><span class="fw-bold">Nom du jeu : </span> {{jeu.nom_jeu}}</p>
+                {% set moyenne = 0 %}
+                    {% for note in notes %}
+                      {% set moyenne = moyenne + note.note / notes|length %}
+                      {% endfor %}
+                      {% if notes == null %}
+                      <p class="col-6 d-flex justify-content-end fs-5"><span class="fw-bold">/5</span></p>
+                      {% else %}
+                        <p class="col-6 d-flex justify-content-end fs-5"><span class="fw-bold">{{moyenne|round (1, 'floor')}} /5</span></p>
+                      {% endif %}
+              
+            </div>
+                <div class="d-flex flex-column text-start my-2">
+                    <p class="card-text"><span class="fw-bold">Catégorie du jeu : </span>{{jeu.nom_categorie}}</p>
+                    <p class="card-text"><span class="fw-bold">Matériel du jeu : </span>{{jeu.materiel}}</p>
+                </div>
+                <div class="row d-flex justify-content-center my-3">
+                    <p class="card-text text-center col-6"><span class="fw-bold">Nombre de joueurs minimum : </span>{{jeu.nb_joueurs_minimum}} joueurs</p>
+                    <p class="card-text text-center col-6"><span class="fw-bold">Age minimum : </span>{{jeu.age_minimum}} ans</p>
+                </div>
+                    <p class="card-text my-2"><span class="fw-bold">Règle du jeu : </span>{{jeu.regles}}</p>
+                <div class="row d-flex">
+                    <p class="card-text my-2"><span class="fw-bold">Jeu mis en ligne par : </span><a class="text-dark" href="?action=uti&pseudo={{jeu.pseudo}}">{{jeu.pseudo}}</a></p>
+                    {% if session.acces == "oui" %}
+                    <div class="my-2 d-flex justify-content-center">
+                    <form method="post" action="index.php" class="well border border-2 border-dark">
+                        <fieldsetclass="form-group">
+                         <legend>Noter et commenter le jeu</legend>
+                         <div class="form-group row my-2 d-flex justify-content-center">
+                           <label for="Commentaire" class="col-sm-2 col-form-label col-form-label-sm">Commentez le jeu</label>
+                           <div class="col-sm-10">
+                             <textarea id="Commentaire" class="form-control form-control-sm" name="Commentaire" rows="5" cols="75" required placeholder="Votre commentaire"/></textarea>
+                           </div>
+                         </div>
+                         <div class="form-group row my-3 d-flex  justify-content-center">
+                           <label for="Note" class="col-sm-2 col-form-label col-form-label-sm">Notez le jeu</label>
+                           <div class="col-sm-10">
+                             <select name="Note" id="Note">
+                           
+                             <option value="1">1</option>
+                             <option value="2">2</option>
+                             <option value="3">3</option>
+                             <option value="4">4</option>
+                             <option selected value="5">5</option>
+                            
+                             </select>
+                           </div>
+                         </div>
+                         <div class="my-2 d-flex justify-content-center"> 
+                         <input  type="hidden" id="pseudo" name="pseudo" value='{{pseudo}}'/>
+                         <input  type="hidden" id="id_jeu" name="id_jeu" value='{{id}}'/>
+                         <input type="submit" class="btn border border-2 border-danger" name="noter" value="notez le jeu"/>
+                         </div>
+                        </fieldset>
+                        </form>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="card d-flex justify-content-around my-2 mx-0 col-12 col-sm-6 col-md-6 col-xl-3" style="width: 50rem;">
+            <div class="card-body">
+                <h5 class="card-title text-center">Les commentaires et les notes</h5>
+                {% for note in notes %}
+                <div class="card d-flex justify-content-center">
+                    <div class="card-body">
+                        <p><span class="fw-bold">Commentaire : </span>{{note.Commentaire}}</p>
+                            <div class="row d-flex justify-content-center">
+                                <p class="col-6"><span class="fw-bold">Utilisateur : </span>{{note.pseudo}}</p>
+                                <p class="d-flex justify-content-end col-6"><span class="fw-bold">Note : </span>{{note.Note}}/5</p>
+                            </div>
+                    </div>
+                </div>
+                {% endfor %}
+    </div>
+
+{% endblock %}

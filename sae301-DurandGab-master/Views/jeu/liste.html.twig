@@ -1,0 +1,29 @@
+{% extends "index.html.twig" %}
+
+{% block content %}
+
+    <div  class="row d-flex container-fluid justify-content-around mx-auto" id="crea" >
+        <h2 class="text-center my-2">Liste des jeux de l'application</h2>
+            {% for jeu in jeux %}
+            <div class="card d-flex justify-content-around my-2 mx-0 border bg-light col-12 col-sm-6 col-md-6 col-xl-3" style="width: 30rem;">
+            <div class="wrapper" style="height:280px; overflow:hidden;"><img src={{"img/" ~ jeu.img_jeu}} style="margin-left:-25%" class="w-auto my-2 card-img-top" alt=""/></div>
+            <div class="card-body">
+            <h5 class="card-title">{{jeu.nom_jeu}}</h5>
+            <p class="card-text">{{jeu.nom_categorie}}</p>
+            <div class="d-flex">
+                <div class="col-6">
+                    <a href="index.php?action=jeu&id={{jeu.id_jeu}}" class="btn btn-dark">Voir détail jeu</a>
+                </div>
+                    {% if session.acces == 'oui' and admin == 1 %}
+                        <div class="col-6 d-flex justify-content-end">
+                            <a href="index.php?action=suppr&id={{jeu.id_jeu}}" class="btn btn-danger">Supprimer le jeu</a>     
+                </div>
+                    {% endif %}
+            </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+

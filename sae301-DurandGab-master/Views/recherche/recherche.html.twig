@@ -1,0 +1,40 @@
+{% extends "index.html.twig" %}
+
+
+{% block content %}
+<h2 class="fs-2">{{message}}</h2>
+<div class="d-flex justify-content-center">
+<div class="text-center w-75">
+
+<h1>Gabix Games : L'application de jeux</h1>
+<p>Bienvenue sur l'application Gabix Games, votre application de recherche de jeux. Ici vous pouvez rechercher un jeu ou en proposer un en vous inscrivrant sur notre application. Si vous avez un compte sur notre application, vous pourrez partager vos ressenties sur les jeux proposés par les autres utilisateurs. </p>
+</div>
+</div>
+<div class="d-flex justify-content-center">
+<form id="recherche" method="post"  action="index.php" class="well w-75 border border-3 border-dark">
+		<fieldset class="form-group"> <legend>Recherche de Jeux</legend>
+			<div class="form-group row my-2 d-flex justify-content-center">
+			<label for="nomjeu" class="col-sm-2 col-form-label col-form-label-sm">Nom du jeu</label>
+			<div class="col-sm-10">
+				<input type="text" id="nomjeu" name="nom_jeu" class="form-control form-control-sm" placeholder="Nom du jeu"/>
+			</div>
+			</div>
+			<div class="form-group row d-flex my-2 justify-content-center">
+			<label for="categorie" class="col-sm-2 col-form-label col-form-label-sm">Catégorie</label>
+			<div class="col-sm-10">
+				<input type="text" id="categorie" name="nom_categorie" class="form-control form-control-sm" placeholder="catégorie du jeu"/>
+			</div>
+			</div>
+			<div class="form-group row d-flex my-2 justify-content-center">
+				<label for="materiel" class="col-sm-2 col-form-label col-form-label-sm">materiel</label>
+			<div class="col-sm-10">
+				<input type="text" id="materiel" name="materiel" class="form-control form-control-sm" placeholder="materiel"/>
+			</div>
+			</div>
+			<div class="d-flex py-2 justify-content-center">
+			<input class="btn border border-2 border-danger" type="submit" name="okRecher" value="valider"/>
+			</div>
+		</fieldset>
+		</form>
+
+{% endblock %}
